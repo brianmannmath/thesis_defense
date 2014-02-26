@@ -1,0 +1,313 @@
+ \documentclass{beamer}
+ \usetheme{Madrid}
+
+
+%%PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+%\usepackage{diagrams}
+\usepackage{mathrsfs}
+\usepackage{manfnt}
+%\usepackage{pstricks}
+
+%%THEOREM STYLES
+
+\theoremstyle{theorem}
+\newtheorem{thm}{Theorem}
+%\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem*{prelemma}{Lemma}
+\newtheorem*{prethm}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem*{conj}{Conjecture}
+\theoremstyle{definition}
+\newtheorem*{defin}{Definition}
+\newtheorem*{goal}{Goal}
+\newtheorem*{remark}{Remark}
+\newtheorem{ex}{Example}
+
+\renewcommand{\baselinestretch}{1}
+
+%%CUSTOM COMMANDS
+
+\newcommand{\prob}[1]{\subsection*{#1}}
+\newcommand{\subprob}[1]{\subsubsection*{#1}}
+
+
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\A}{\ensuremath{\mathbb A}}
+\newcommand{\Z}{\ensuremath{\mathbb Z}}
+\newcommand{\C}{\ensuremath{\mathbb C}}
+\newcommand{\Q}{\ensuremath{\mathbb Q}}
+\newcommand{\T}{\ensuremath{\mathbb T}}
+\renewcommand{\H}{\ensuremath{\mathbb H}}
+\newcommand{\CP}{\ensuremath{\mathbf{CP}}}
+\newcommand{\RP}{\ensuremath{\mathbf{RP}}}
+\renewcommand{\P}{\ensuremath{\mathbf P}}
+\newcommand{\eset}{\emptyset}
+
+\newcommand{\isom}{\cong}
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+
+\renewcommand{\O}{\ensuremath{\mathcal{O}}}
+\newcommand{\F}{\ensuremath{\mathcal F}}
+\newcommand{\G}{\ensuremath{\mathcal{G}}}
+\newcommand{\I}{\ensuremath{\mathscr{I}}}
+\newcommand{\E}{\ensuremath{\mathcal{E}}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\K}{\ensuremath{\mathcal{K}}}
+\newcommand{\N}{\ensuremath{\mathbf{N}}}
+\newcommand{\U}{\ensuremath{\mathfrak U}}
+
+\newcommand{\cech}{\check{\text{C}}\text{ech}}
+
+\renewcommand{\a}{\ensuremath{\mathfrak a}}
+\newcommand{\m}{\ensuremath{\mathfrak m}}
+\newcommand{\p}{\ensuremath{\mathfrak p}}
+\newcommand{\q}{\ensuremath{\mathfrak q}}
+\newcommand{\e}{\ensuremath{\epsilon}}
+
+\newcommand{\vphi}{\varphi}
+
+
+\newcommand{\Div}{\ensuremath{\operatorname{Div}}}
+\newcommand{\spec}{\ensuremath{\operatorname{Spec}}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\injrad}{\ensuremath{\operatorname{inj}}}
+\newcommand{\vol}{\ensuremath{\operatorname{vol}}}
+\newcommand{\End}{\ensuremath{\operatorname{End}}}
+\newcommand{\iso}{\ensuremath{\operatorname{Isom}}}
+\newcommand{\proj}{\ensuremath{\operatorname{Proj}}}
+\newcommand{\hgt}{\operatorname{ht}}
+\newcommand{\im}{\operatorname{Im}}
+\renewcommand{\hom}{\operatorname{Hom}}
+\newcommand{\adj}{\operatorname{Adj}}
+\renewcommand{\-}{\ensuremath{^{-1}}}
+\renewcommand{\>}{\ensuremath{\rightarrow}}
+\newcommand{\map}{\ensuremath{\mapsto}}
+\newcommand{\id}{\ensuremath{\mathbf{Id}}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\rad}{\operatorname{Rad}}
+\newcommand{\ann}{\operatorname{Ann}}
+\newcommand{\ass}{\operatorname{Ass}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\del}{\partial}
+
+
+\renewcommand{\(}{\langle}
+\renewcommand{\)}{\rangle}
+\newcommand{\inject}{\hookrightarrow}
+\newcommand{\surject}{\twoheadrightarrow}
+\newcommand{\Aut}{\text{Aut}\,}
+\newcommand{\Out}{\text{Out}}
+%\newcommand{\End}{\text{End}\,}
+\newcommand{\ad}{\text{ad}\,}
+\newcommand{\Ad}{\text{Ad}\,}
+
+\newcommand{\invlim}{\mathop{\varprojlim}\limits}
+\newcommand{\directlim}{\mathop{\varinjlim}\limits}
+
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\hookrightarrow}
+
+\renewcommand{\part}[2]{\frac{\del{#1}}{\del{#2}}}
+
+%MARGINS
+
+%\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+
+\AtBeginSection[] {
+\begin{frame}<beamer>
+   \frametitle{Sections}
+   \tableofcontents[currentsection]
+\end{frame}}
+
+\title{The Cyclic Splitting Graph}
+\subtitle{and other $Out(F_N)$-graphs}
+\author{Brian Mann}
+\institute{University of Utah}
+\date{January 16, 2014}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+\section{Preliminaries}
+
+\begin{frame}
+You can get all these slides on \url{http://www.github.com/brianmannmath/JointMathMeetings}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Hyperbolic metric spaces}
+\begin{goal}
+Study $Out(F_N)$ via its action on hyperbolic graphs.
+\end{goal}
+\pause
+\begin{defin}
+Let $\delta > 0$. A geodesic metric space $X$ is \emph{$\delta$-hyperbolic} if for any geodesic triangle with vertices $a,b,c$, the geodesic segment $ab$ is contained in a $\delta$-neighborhood of the union of $bc$ and $ac$.
+
+If $X$ is $\delta$-hyperbolic for some $\delta$, we often just say $X$ is \emph{hyperbolic}. 
+\end{defin}
+
+\pause
+
+Some well-known examples are: trees ($\R$-trees, if you know what those are) and hyperbolic space.
+\end{frame}
+
+\begin{frame}
+\frametitle{Actions on hyperbolic spaces}
+Let $X$ be a hyperbolic metric space.
+\pause
+\begin{defin}
+An isometry $g$ of $X$ is called a \emph{hyperbolic isometry} or just \emph{hyperbolic} if it has an invariant bi-infinite quasi-geodesic $\gamma$ in $X$. We will call $\gamma$ a \emph{quasi-axis} for $g$.
+\end{defin}
+\end{frame}
+
+\section{Weak Proper Discontinuity}
+
+\begin{frame}
+Let $G$ be a finitely presented group and $X$ a hyperbolic metric space.
+\pause
+\begin{defin}
+An action of $G$ on $X$ by isometries satisfies \emph{Weak Proper Discontinuity (WPD)} if:
+\pause
+\begin{itemize}
+\item $G$ is not virtually cyclic.
+\pause
+\item $G$ contains at least one hyperbolic isometry.
+\pause
+\item for each hyperbolic isometry $g \in G$, $x \in X$, and $C >0$ there exists an $N > 0$ such that $$\{ h  \in G | d(x,h(x)) \leq C, d(g^N(x), hg^N(x)) \leq C \}$$ is finite.
+\end{itemize}
+\end{defin}
+\pause
+In English: sufficiently long segments of quasi-axes for hyperbolic $g \in G$ are coarsely stabilized by only finitely many elements of $G$
+\end{frame}
+
+\begin{frame}
+\begin{remark}
+If the action of $G$ on $X$ satisfies WPD, then for $g \in G$ hyperbolic, the centralizer of $g$ is virtually cyclic.
+\end{remark}
+\pause
+Some examples:
+\pause
+\begin{itemize}
+\item The action of $MCG(S)$ on $\mathcal{C}(S)$. (Bestvina-Fujiwara \cite{BF02})
+\pause
+\item A hyperbolic group $G$ acting on its Cayley graph.
+\pause
+\item The action of a relatively hyperbolic group on its relative Cayley graph.
+\pause
+\item Michael Hull will talk about more examples later!
+\end{itemize}
+\pause
+\begin{thm}[Sisto 2013 \cite{Sisto13}]
+Hyperbolic isometries are generic in $G$ (in some sense involving a random walk on the Cayley graph).
+\end{thm}
+\end{frame}
+
+\section{Hyperbolic $Out(F_N)$-graphs}
+
+\begin{frame}
+\frametitle{The Free Splitting Graph}
+\begin{defin}
+The \emph{free splitting graph} $FS_N$ has vertex set $=$ one edge graph of groups decompositions of $F_N$ with trivial edge group (up to some equivalence). Two vertices are connected by an edge if there is a two-edge graph of groups decomposition collapsing to both.
+\end{defin}
+\pause
+\begin{thm}[Handel-Mosher 2012 \cite{HandelMosher}]
+$FS_N$ is hyperbolic.
+\end{thm}
+\end{frame}
+
+\begin{frame}
+The action of $Out(F_N)$ on $FS_N$ is not WPD! \\
+\pause
+Consider a surface $S = S_{g,1}$ with genus $g$ and $1$ puncture attached to a rose $R$ with $k+1$ petals by attaching the boundary of $S$ to one petal of $R$ by the identity.
+\pause
+\includegraphics[scale = .5]{WPD_1.jpg}
+\end{frame}
+
+\begin{frame}
+\includegraphics[scale = .3]{WPD_1.jpg}
+
+Choose an automorphism $\phi$ of $F_{2g + k}$ which maps $a_1, \ldots, a_k$ over $a_{k+1}$ in some complicated way and which is the identity on $S$. If we do this the right way, we ensure that $\phi$ acts hyperbolically on $FS_N$. But any surface automorphism of $S$ commutes with $\phi$ since it is the identity on $\del S$, so the centralizer of $\phi$ is not virtually cyclic!
+\end{frame}
+
+\begin{frame}
+\frametitle{The Cyclic Splitting Graph}
+
+\begin{defin}
+The \emph{cyclic splitting graph} $FZ_N$ has vertex set $=$ one-edge graph of group decompositions of $F_N$ with cyclic ($\Z$ or trivial) edge groups. Two vertices are connected by an edge if there exists a two-edge decomposition collapsing to both.
+\end{defin}
+\pause
+\begin{thm}[- 2013 \cite{Mann13}]
+$FZ_N$ is hyperbolic.
+\end{thm}
+\pause
+Q: Is it WPD?
+\pause
+Note that the automorphisms above where WPD fails for $FS_N$ fix a cyclic splitting.
+\end{frame}
+
+\begin{frame}
+\frametitle{The Free Factor Graph}
+\begin{defin}
+The \emph{free factor graph} $FF_N$ has vertex set $=$ one-edge graph of groups decompositions of $F_N$ with trivial edge group. Two vertices are connected by an edge if there exists a proper free factor which is (up to conjugacy) contained in vertex groups of both decompositions.
+\end{defin}
+\pause
+\begin{thm}[Bestvina-Feighn \cite{BF09}, \cite{BF11}]
+$FF_N$ is hyperbolic and the action of $Out(F_N)$ is WPD.
+\end{thm}
+\end{frame}
+
+\begin{frame}
+\frametitle{The Intersection Graph}
+\begin{defin}
+The \emph{intersection graph} $I_N$ has vertex set $=$ one-edge graph of groups decompositions of $F_N$ with cyclic edge group. Two vertices are connected by an edge if the corresponding Bass-Serre trees share a common elliptic conjugacy class (which might not be contained in a free factor! $[a,b] \in F_2$). 
+\end{defin}
+\pause
+Surface automorphisms have a bounded orbit in $I_N$ (any two trees dual to curves or arcs on the surface are adjacent). 
+\pause
+\begin{thm}[- 2013]
+$I_N$ is hyperbolic and the action of $Out(F_N)$ is WPD. The hyperbolic isometries are fully irreducible automorphisms which have no periodic conjugacy classes.
+\end{thm}
+\end{frame}
+\begin{frame}
+
+\begin{cor}
+Fully irreducible automorphisms with no periodic conjugacy classes are generic in $Out(F_N)$.
+\end{cor}
+\end{frame}
+
+\bibliographystyle{plain}
+\bibliography{Refs,indecompREF}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+

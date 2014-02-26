@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.07pt}
+\beamer@sectionintoc {1}{Preliminaries}{2}{0}{1}
+\beamer@sectionintoc {2}{A sketch of the proof of the first main theorem}{14}{0}{2}
+\beamer@sectionintoc {3}{More cyclic splitting complex}{21}{0}{3}
+\beamer@sectionintoc {4}{More results}{25}{0}{4}
